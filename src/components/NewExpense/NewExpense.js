@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import ExpenseForm from './ExpenseForm';
-import './NewExpense.css';
+import ExpenseForm from "./ExpenseForm";
+import "./NewExpense.css";
 
 const NewExpense = (props) => {
   const [isEditing, setIsEditing] = useState(false);
 
+  const isEmpty = (data) => {
+    const isEmpty = Object.values(data).some(
+      (value) => value.toString() === "Invalid Date" || value === ""
+    );
+
+    if (isEmpty) {
+      alert("All The Fields Are Required!");
+      return true;
+    }
+    return false;
+  };
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
       id: Math.random().toString(),
     };
+
+    if(isEmpty(expenseData)) return;
+
     props.onAddExpense(expenseData);
     setIsEditing(false);
   };
@@ -24,7 +38,7 @@ const NewExpense = (props) => {
   };
 
   return (
-    <div className='new-expense'>
+    <div className="new-expense">
       {!isEditing && (
         <button onClick={startEditingHandler}>Add New Expense</button>
       )}

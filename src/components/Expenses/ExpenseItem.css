@@ -17,6 +17,7 @@
   flex: 1;
 }
 
+
 .expense-item h2 {
   color: #3a3a3a;
   font-size: 1rem;
@@ -33,7 +34,22 @@
   border: 1px solid white;
   padding: 0.5rem;
   border-radius: 12px;
+  /* margin: 2 4; */
+  margin-left: 4;
+  margin-right: 4;
 }
+.deleteButton {
+  cursor: pointer;
+  background: transparent;
+  border-color: white; /* a light red color */
+  color: white; /* text color same as border */
+}
+
+.deleteButton:hover {
+  background: #c89c9f; /* background becomes light red on hover */
+  color: #633c3c; /* text becomes same as container background on hover */
+}
+
 
 @media (min-width: 580px) {
   .expense-item__description {

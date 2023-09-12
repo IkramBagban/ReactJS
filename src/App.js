@@ -29,6 +29,9 @@ const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
   const addExpenseHandler = (expense) => {
+    // const e = Boolean(expense)
+    console.log(expense);
+
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
@@ -37,23 +40,15 @@ const App = () => {
   const DeleteExpenseHandler = (id) => {
     const filteredExpenses = expenses.filter((expense) => expense.id !== id);
 
-    const confirmDelete = window.confirm('Do You Want To Delete This Item?')
+    const confirmDelete = window.confirm("Do You Want To Delete This Item?");
 
-       && setExpenses(filteredExpenses) 
-    
+    confirmDelete && setExpenses(filteredExpenses);
   };
-
-  // return React.createElement(
-  //   'div',
-  //   {},
-  //   React.createElement('h2', {}, "Let's get started!"),
-  //   React.createElement(Expenses, { items: expenses })
-  // );
 
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses} onDelete={DeleteExpenseHandler}/>
+      <Expenses items={expenses} onDelete={DeleteExpenseHandler} />
     </div>
   );
 };
