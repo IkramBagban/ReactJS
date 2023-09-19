@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import ExpenseItem from './ExpenseItem';
 import './ExpensesList.css';
+import ExpenseContext from '../../store/expense-context';
 
-const ExpensesList = ({items}) => {
-  if (items.length === 0) {
+const ExpensesList = () => {
+  const expenseCtx = useContext(ExpenseContext)
+
+  if (expenseCtx.filteredExpenses.length === 0) {
     return <h2 className='expenses-list__fallback'>Found no expenses.</h2>;
   }
-
   return (
     <ul className='expenses-list'>
-      {items.map((expense) => (
+      {expenseCtx.filteredExpenses.map((expense) => (
         <ExpenseItem
           key={expense.id}
           title={expense.title}

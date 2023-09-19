@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Chart from '../Chart/Chart';
+import ExpenseContext from '../../store/expense-context';
 
 const ExpensesChart = (props) => {
   const chartDataPoints = [
@@ -18,7 +19,9 @@ const ExpensesChart = (props) => {
     { label: 'Dec', value: 0 },
   ];
 
-  for (const expense of props.expenses) {
+  const expenseCtx = useContext(ExpenseContext)
+
+  for (const expense of expenseCtx.filteredExpenses) {
     const expenseMonth = expense.date.getMonth(); // starting at 0 => January => 0
     chartDataPoints[expenseMonth].value += expense.amount;
   }

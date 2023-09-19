@@ -23,6 +23,7 @@ const DUMMY_EXPENSES = [
 ];
 const ContextProvider = ({children}) => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const [selectedYear, setSelectedYear] = useState('all');
 
   const addExpenseHandler = (expense) => {
     // const e = Boolean(expense)
@@ -41,12 +42,20 @@ const ContextProvider = ({children}) => {
     confirmDelete && setExpenses(filteredExpenses);
   };
 
-  
+  const filteredExpenses = expenses.filter((expense) => {
+      
+    if (selectedYear === 'all') return expense;
+
+    return expense.date.getFullYear().toString() === selectedYear;
+  });
 
   const value = {
     expenses: expenses,
     onAddExpense: addExpenseHandler,
     onDelete: DeleteExpenseHandler,
+    onSetFilteredYear: setSelectedYear,
+    selectedYear:selectedYear,
+    filteredExpenses : filteredExpenses
   };
 
   return <ExpenseContext.Provider value={value}>{children}</ExpenseContext.Provider>;

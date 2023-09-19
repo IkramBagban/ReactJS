@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './ExpensesFilter.css';
+import ExpenseContext from '../../store/expense-context';
 
-const ExpensesFilter = ({onSetFilteredYear, selected}) => {
+const ExpensesFilter = () => {
+  const expenseCtx = useContext(ExpenseContext)
+
   const dropdownChangeHandler = (event) => {
-    onSetFilteredYear(event.target.value);
+    expenseCtx.onSetFilteredYear(event.target.value);
   };
 
   return (
     <div className='expenses-filter'>
       <div className='expenses-filter__control'>
         <label>Filter by year</label>
-        <select value={selected} onChange={dropdownChangeHandler}>
+        <select value={expenseCtx.selectedYear} onChange={dropdownChangeHandler}>
           <option value='all'>All</option>
           <option value='2023'>2023</option>
           <option value='2022'>2022</option>
