@@ -46,8 +46,8 @@
 }
 
 .deleteButton:hover {
-  background: #c89c9f; /* background becomes light red on hover */
-  color: #633c3c; /* text becomes same as container background on hover */
+  background: #af6767; /* background becomes light red on hover */
+  /* color: #633c3c; text becomes same as container background on hover */
 }
 
 

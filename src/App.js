@@ -26,29 +26,14 @@ const DUMMY_EXPENSES = [
 ];
 
 const App = () => {
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
-
-  const addExpenseHandler = (expense) => {
-    // const e = Boolean(expense)
-    console.log(expense);
-
-    setExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses];
-    });
-  };
-
-  const DeleteExpenseHandler = (id) => {
-    const filteredExpenses = expenses.filter((expense) => expense.id !== id);
-
-    const confirmDelete = window.confirm("Do You Want To Delete This Item?");
-
-    confirmDelete && setExpenses(filteredExpenses);
-  };
+ 
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses} onDelete={DeleteExpenseHandler} />
+      {/* <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} onDelete={DeleteExpenseHandler} /> */}
+      <NewExpense />
+      <Expenses />
     </div>
   );
 };

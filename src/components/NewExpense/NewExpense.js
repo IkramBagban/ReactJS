@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css";
+import ExpenseContext from "../../store/expense-context";
 
-const NewExpense = (props) => {
+const NewExpense = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const expenseCtx = useContext(ExpenseContext)
 
   const isEmpty = (data) => {
     const isEmpty = Object.values(data).some(
@@ -25,27 +27,24 @@ const NewExpense = (props) => {
 
     if(isEmpty(expenseData)) return;
 
-    props.onAddExpense(expenseData);
+    expenseCtx.onAddExpense(expenseData);
     setIsEditing(false);
   };
 
-  const startEditingHandler = () => {
-    setIsEditing(true);
-  };
 
-  const stopEditingHandler = () => {
-    setIsEditing(false);
-  };
+  const editingHandler = ()=>{
+    setIsEditing(!isEditing);
+  }
 
   return (
     <div className="new-expense">
       {!isEditing && (
-        <button onClick={startEditingHandler}>Add New Expense</button>
+        <button onClick={editingHandler}>Add New Expense</button>
       )}
       {isEditing && (
         <ExpenseForm
           onSaveExpenseData={saveExpenseDataHandler}
-          onCancel={stopEditingHandler}
+          onCancel={editingHandler}
         />
       )}
     </div>
