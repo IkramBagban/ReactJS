@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Signup.module.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { postData } from "../../utils/api";
 
 function Signup() {
   const [inputValue, setInputValue] = useState({
@@ -9,15 +10,38 @@ function Signup() {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const inputChangeHandler = (e) => {
     const { value, id } = e.target;
     setInputValue((prev) => ({ ...prev, [id]: value }));
 
     console.log(inputValue);
   };
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(inputValue);
+    try {
+      const response = await postData("api/v1/auth/signup", inputValue);
+
+      if (response.status === 401) {
+        const validationError = response.data.errors[0].msg;
+        throw new Error(validationError);
+      }
+
+      if (response.status === 409) {
+        throw new Error(response.data.message);
+      }
+
+      if (!response.data.success) {
+        throw new Error("Something went wrong!");
+      }
+
+      navigate("/login");
+      console.log("loggedin");
+    } catch (err) {
+      console.log(err);
+      alert(err || "Something went wrong");
+    }
   };
 
   return (

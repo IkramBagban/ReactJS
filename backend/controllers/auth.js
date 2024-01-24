@@ -63,11 +63,10 @@ exports.postSignup = async (req, res) => {
     }
 
     const existingUser = await User.findOne({ email: email });
-    console.log("existing user", existingUser);
     if (existingUser) {
       console.log("in existing user", !existingUser);
       return res
-        .status(400)
+        .status(409)
         .json({ message: "Email Already in user", success: false });
     }
     const hashedPassword = await bcrypt.hash(password, 12);

@@ -8,7 +8,6 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    // isLoggedin ? navigate('/') : navigate('/login')
     if(!isLoggedin){
       navigate('/login')
     }

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import { API_URL } from "../../utils/var";
+import { postData } from "../../utils/api";
 
 function Login() {
   const [inputValue, setInputValue] = useState({
@@ -11,7 +12,7 @@ function Login() {
     password: "",
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const inputChangeHandler = (e) => {
     const { value, id } = e.target;
@@ -23,18 +24,28 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${API_URL}/api/v1/auth/login`,
-        inputValue
-      );
+      const response = await postData("api/v1/auth/login", inputValue);
+
+      if (response.status === 404 || response.status === 401) {
+        throw new Error("Invalid Email Or Password");
+      }
+
+      if (response.status === 500) {
+        throw new Error("Server Side Error");
+      }
+
+      if(response.status !== 200){
+        throw new Error("Something went wrong. Please try again.");
+      }
 
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userId", response.data.userId);
-        navigate('/')
+        navigate("/");
       }
     } catch (err) {
-      console.log(err);
+      console.log("error => ", err);
+      alert(err)
     }
   };
 
