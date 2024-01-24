@@ -14,11 +14,11 @@ const ExpensesList = () => {
     <ul className='expenses-list'>
       {expenseCtx.filteredExpenses.map((expense) => (
         <ExpenseItem
-          key={expense.id}
+          key={expense._id}
           title={expense.title}
           amount={expense.amount}
           date={expense.date}
-          id={expense.id}
+          id={expense._id}
           
         />
       ))}
