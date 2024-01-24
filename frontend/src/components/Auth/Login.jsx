@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import axios from "axios";
+import { API_URL } from "../../utils/var";
 
 function Login() {
   const [inputValue, setInputValue] = useState({
@@ -8,15 +11,31 @@ function Login() {
     password: "",
   });
 
+  const navigate = useNavigate()
+
   const inputChangeHandler = (e) => {
     const { value, id } = e.target;
     setInputValue((prev) => ({ ...prev, [id]: value }));
 
     console.log(inputValue);
   };
-  const submitHandler = (e) => {
-    e.preventDefault()
-    console.log(inputValue);
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        `${API_URL}/api/v1/auth/login`,
+        inputValue
+      );
+
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.userId);
+        navigate('/')
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
