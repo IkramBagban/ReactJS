@@ -15,11 +15,15 @@ const Header = () => {
 
     expenseCtx.onClearContext();
   };
+
+  const profileHandler = () =>{
+    
+  }
   return (
     <header className={styles.header}>
       <div className={styles.logo}>Logo</div>
       <nav className={styles.nav}>
-        <button href="/profile" className={styles.navItem}>
+        <button onClick={profileHandler} className={styles.navItem}>
           Profile
         </button>
         <button

@@ -1,0 +1,14 @@
+.profileDetails {
+  background-color: white;
+  position: fixed;
+  right: -100%;
+  width: 25rem;
+
+  height: 100vh;
+  top: 0;
+  transition: all 0.9s;
+}
+
+.active {
+  right: 0;
+}
