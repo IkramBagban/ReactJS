@@ -6,12 +6,6 @@ import ExpenseContext from "../../store/expense-context";
 
 const ExpensesList = ({ isLoading }) => {
   const expenseCtx = useContext(ExpenseContext);
-  // const [filteredExpenses, setFilteredExpenses] = useState([]);
-
-  // useEffect(() => {
-  //   setFilteredExpenses(expenseCtx.filteredExpenses);
-  // }, [expenseCtx.filteredExpenses, isLoading]);
-  // console.log(expenseCtx.expenses);
 
   if (isLoading) {
     return <h2 className="expenses-list__fallback">Loading...</h2>;
