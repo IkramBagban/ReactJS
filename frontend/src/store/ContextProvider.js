@@ -26,7 +26,7 @@ const ContextProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([]);
   const [selectedYear, setSelectedYear] = useState("all");
 
-  
+
 
   const addExpenseHandler = (expense) => {
     console.log(expense);
@@ -54,7 +54,7 @@ const ContextProvider = ({ children }) => {
     onAddExpense: addExpenseHandler,
     onDelete: DeleteExpenseHandler,
     onSetFilteredYear: setSelectedYear,
-    onAddFetchedExpensesToStore : setExpenses,
+    onAddExpensesToContext : setExpenses,
     selectedYear: selectedYear,
     filteredExpenses: filteredExpenses,
   };

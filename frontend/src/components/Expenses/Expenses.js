@@ -26,7 +26,7 @@ const Expenses = () => {
       return { ...expense, date: new Date(expense.date) };
     });
 
-    expenseCtx.onAddFetchedExpensesToStore(expensesWithModifiedDate);
+    expenseCtx.onAddExpensesToContext(expensesWithModifiedDate);
   }, [isLoading]);
 
   return (

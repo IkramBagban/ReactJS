@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 const ExpenseContext = createContext({
   expenses: [],
-  onAddFetchedExpensesToStore : (expenses) =>{},
+  onAddExpensesToContext : (expenses) =>{},
   onAddExpense: (expense) => {},
   onDelete: (id) => {},
   onSetFilteredYear: (year) => {},
