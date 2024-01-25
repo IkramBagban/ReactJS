@@ -6,7 +6,7 @@ const isAuth = require("../middleware/isAuth");
 
 const router = express.Router();
 
-router.get('/:userId',isAuth, getExpenses)
+router.get('/:userId', getExpenses)
 
 router.post(
   "/create-expense",

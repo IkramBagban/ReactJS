@@ -4,16 +4,21 @@ const Expense = require("../model/expense");
 exports.getExpenses = async (req, res) => {
   const { userId } = req.params;
 
-  const expenses = await Expense.find({ userId: userId });
+  try {
+    const expenses = await Expense.find({ userId: userId });
 
-  res
-    .status(200)
-    .json({
+    res.status(200).json({
       message: "Expense Fetched Successfully.",
       success: true,
       totalExpenses: expenses.length,
       data: expenses,
     });
+  } catch (err) {
+    res.status(500).json({
+      message: "Internal Server Error",
+      success: false,
+    });
+  }
 };
 
 exports.postExpense = async (req, res) => {

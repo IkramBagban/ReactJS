@@ -4,9 +4,14 @@ import ExpenseItem from './ExpenseItem';
 import './ExpensesList.css';
 import ExpenseContext from '../../store/expense-context';
 
-const ExpensesList = () => {
+const ExpensesList = ({isLoading}) => {
   const expenseCtx = useContext(ExpenseContext)
 
+  
+
+  if (isLoading) {
+    return <h2 className='expenses-list__fallback'>Loading...</h2>;
+  }
   if (expenseCtx.filteredExpenses.length === 0) {
     return <h2 className='expenses-list__fallback'>Found no expenses.</h2>;
   }
