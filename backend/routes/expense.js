@@ -27,5 +27,5 @@ router.post(
   postExpense
 );
 
-router.delete("/delete/:expenseId", isAuth, deleteExpense);
+router.delete("/delete/:expenseId",isAuth, deleteExpense);
 module.exports = router;

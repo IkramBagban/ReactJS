@@ -11,6 +11,7 @@ const Expenses = () => {
   const expenseCtx = useContext(ExpenseContext);
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
+  
   const headers = {
     Authroization: "Bearer " + token,
   };

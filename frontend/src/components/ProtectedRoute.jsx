@@ -10,8 +10,6 @@ function ProtectedRoute({ children }) {
 
   const isPublicRoute = publicRoutes.includes(location.pathname);
 
-  console.log("token", token);
-
   let isAuthenticated;
   try {
     const decoded = jwtDecode(token);

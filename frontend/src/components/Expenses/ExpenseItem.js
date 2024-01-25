@@ -9,27 +9,33 @@ import { API_URL } from "../../utils/var";
 
 const ExpenseItem = (props) => {
   const expenseCtx = useContext(ExpenseContext);
+  const token = localStorage.getItem("token");
 
   const deleteHandler = async () => {
     const confirmDelete = window.confirm("Do You Want To Delete This Item?");
-try{
+    if (!confirmDelete) return;
+    try {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
 
-  if (!confirmDelete) return;
-  const response = await axios.delete(
-    `${API_URL}/api/v1/expenses/delete/${props.id}`
-    );
-    console.log(props.id);
+      const response = await axios.delete(
+        `${API_URL}/api/v1/expenses/delete/${props.id}`,
+        { headers }
+      );
 
-    console.log("response.data", response.data);
-    console.log("response.status", response.status);
-    expenseCtx.onDelete(props.id);
-  }catch(err){
-    // console.log(err.response.status)
-    if(err.response.status === 401){
-      return alert(err.response.data.message || "Not Authenticated")
+      if (response.status === 204) {
+        expenseCtx.onDelete(props.id);
+      } else {
+        alert("Delete failed");
+      }
+    } catch (err) {
+      console.log(err);
+      if (err.response.status === 401) {
+        return alert(err.response.data.message || "Not Authenticated");
+      }
+      alert("Something went wrong");
     }
-    alert("Something went wrong")
-  }
   };
 
   return (
