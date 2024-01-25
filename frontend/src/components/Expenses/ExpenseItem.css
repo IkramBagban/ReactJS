@@ -1,55 +1,25 @@
-.expense-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-  margin: 1rem 0;
-  background-color: #4b4b4b;
-}
-
-.expense-item__description {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: flex-end;
-  flex-flow: column-reverse;
-  justify-content: flex-start;
-  flex: 1;
-}
-
-
-.expense-item h2 {
-  color: #3a3a3a;
-  font-size: 1rem;
-  flex: 1;
-  margin: 0 1rem;
-  color: white;
-}
-
 .expense-item__price {
-  font-size: 1rem;
+  /* font-size: 1rem;
   font-weight: bold;
   color: white;
   background-color: #40005d;
   border: 1px solid white;
   padding: 0.5rem;
   border-radius: 12px;
-  /* margin: 2 4; */
   margin-left: 4;
-  margin-right: 4;
+  margin-right: 4; */
 }
 .deleteButton {
   cursor: pointer;
   background: transparent;
-  border-color: white; /* a light red color */
-  color: white; /* text color same as border */
+  border-color: white;
+  color: white;
 }
 
 .deleteButton:hover {
-  background: #af6767; /* background becomes light red on hover */
-  /* color: #633c3c; text becomes same as container background on hover */
+  background: rgb(239, 138, 138);
+  /* color: ; */
 }
-
 
 @media (min-width: 580px) {
   .expense-item__description {
@@ -67,4 +37,53 @@
     font-size: 1.25rem;
     padding: 0.5rem 1.5rem;
   }
+}
+
+/* ExpenseItem.css */
+
+.expense-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  background-color: #4b4b4b;
+  width: 100%;
+}
+
+.expense-item:hover {
+  background-color: #625d5d;
+
+}
+
+.expense-item__description {
+  display: flex;
+  flex: 1;
+  /* text-align: center; */
+  justify-content: space-between;
+}
+
+.expense-item h2 {
+  margin: 0 0 0.5rem 0;
+  /* color: #333; */
+  color: #3a3a3a;
+  /* font-size: 1rem;  */
+  /* flex: 1; */
+  margin: 0 1rem;
+  color: white;
+}
+
+.expense-item__price {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #40005d;
+  border: 1px solid white;
+  border-radius: 12px;
+  margin-left: 4;
+  margin-right: 4;
+  padding: 1rem 1rem;
 }

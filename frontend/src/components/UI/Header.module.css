@@ -1,0 +1,37 @@
+.rootContainer{
+}
+.header {
+    /* background-color: #4A4E69; */
+    /* background-color: #4b4b4b; */
+    /* color: #5d5a59; */
+    /* position: fixed; */
+    color: #eae2df;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 10rem;
+    /* width: 100vw; */
+  
+}
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .nav {
+    display: flex;
+  }
+  
+  .navItem {
+    text-decoration: none;
+    color: #F2E9E4;
+    margin-left: 2rem;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .navItem:hover {
+    color: #9A8C98; /* Light purple */
+  }
+  

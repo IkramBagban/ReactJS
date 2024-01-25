@@ -49,12 +49,18 @@ const ContextProvider = ({ children }) => {
     return expense.date.getFullYear().toString() === selectedYear;
   });
 
+  const clearContext = () =>{
+    setExpenses('')
+    setSelectedYear('all')
+  }
+
   const value = {
     expenses: expenses,
     onAddExpense: addExpenseHandler,
     onDelete: DeleteExpenseHandler,
     onSetFilteredYear: setSelectedYear,
     onAddExpensesToContext : setExpenses,
+    onClearContext : clearContext,
     selectedYear: selectedYear,
     filteredExpenses: filteredExpenses,
   };

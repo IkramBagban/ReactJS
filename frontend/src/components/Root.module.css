@@ -1,0 +1,39 @@
+ .root {
+    font-family: 'Arial', sans-serif;
+    color: #2D2D2D; 
+    min-height: 100vh;
+    padding: 2rem;
+    box-sizing: border-box;
+
+  } 
+
+.btnContainer {
+    background-color: #a892ee;
+    padding: 1rem;
+    margin: 2rem auto;
+    width: 60%;
+    max-width: 95%;
+    border-radius: 12px;
+    text-align: center;
+    padding: 2rem;
+    /* width: 80%; */
+  }
+  
+  .addExpenseButton {
+    background-color: #40005d;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addExpenseButton:hover {
+    background-color: #510674;
+  }
+
+
+  
+  

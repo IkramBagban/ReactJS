@@ -6,6 +6,7 @@ const ExpenseContext = createContext({
   onAddExpense: (expense) => {},
   onDelete: (id) => {},
   onSetFilteredYear: (year) => {},
+  onClearContext : ()=>{},
   selectedYear: "all",
   filteredExpenses: () => {},
 });

@@ -44,14 +44,14 @@ const ExpenseItem = (props) => {
         <ExpenseDate date={props.date} />
         <div className="expense-item__description">
           <h2>{props.title} </h2>
-          {/* <button onClick={()=> console.log('edit')}>Edit</button> */}
-          <div className="expense-item__price">${props.amount}</div>
-          <button
-            className="deleteButton expense-item__price"
-            onClick={deleteHandler}
-          >
-            Delete
-          </button>
+          <div style={{ display: "flex", alignSelf: "flex-end" }}>
+            <div className="expense-item__price">${props.amount}</div>
+            <div>
+              <button className="deleteButton" onClick={deleteHandler}>
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       </Card>
     </li>

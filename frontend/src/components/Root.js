@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import './Root.css'
+import styles from './Root.module.css'
 import Expenses from "./Expenses/Expenses";
+import Header from "./UI/Header";
 
 const Root = () => {
   const navigate = useNavigate();
@@ -11,9 +12,10 @@ const Root = () => {
   };
 
   return (
-    <div>
-      <div className="btn-container">
-        <button onClick={clickHandler}>Adddd New Expense</button>
+    <div className={styles.root}>
+      <Header />
+      <div className={styles.btnContainer}>
+        <button className={styles.addExpenseButton} onClick={clickHandler}>Add New Expense</button>
       </div>
       <Expenses />
     </div>
