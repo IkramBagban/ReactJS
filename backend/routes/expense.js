@@ -1,10 +1,12 @@
 const express = require("express");
 const { body } = require("express-validator");
 
-const { postExpense } = require("../controllers/expense");
+const { postExpense, getExpenses } = require("../controllers/expense");
 const isAuth = require("../middleware/isAuth");
 
 const router = express.Router();
+
+router.get('/:userId',isAuth, getExpenses)
 
 router.post(
   "/create-expense",

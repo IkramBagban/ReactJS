@@ -1,6 +1,20 @@
 const { validationResult } = require("express-validator");
 const Expense = require("../model/expense");
-// const {validationResult}
+
+exports.getExpenses = async (req, res) => {
+  const { userId } = req.params;
+
+  const expenses = await Expense.find({ userId: userId });
+
+  res
+    .status(200)
+    .json({
+      message: "Expense Fetched Successfully.",
+      success: true,
+      totalExpenses: expenses.length,
+      data: expenses,
+    });
+};
 
 exports.postExpense = async (req, res) => {
   const { userId, title, date, amount } = req.body;
@@ -31,8 +45,8 @@ exports.postExpense = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({
-        message: "Internal Server Error",
-        success: false,
-      });
+      message: "Internal Server Error",
+      success: false,
+    });
   }
 };
