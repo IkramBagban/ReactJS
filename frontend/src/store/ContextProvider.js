@@ -26,6 +26,8 @@ const ContextProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([]);
   const [selectedYear, setSelectedYear] = useState("all");
 
+  
+
   const addExpenseHandler = (expense) => {
     console.log(expense);
 
@@ -38,9 +40,7 @@ const ContextProvider = ({ children }) => {
   const DeleteExpenseHandler = (id) => {
     const filteredExpenses = expenses.filter((expense) => expense._id !== id);
 
-    const confirmDelete = window.confirm("Do You Want To Delete This Item?");
-
-    confirmDelete && setExpenses(filteredExpenses);
+    setExpenses(filteredExpenses);
   };
 
   const filteredExpenses = expenses.filter((expense) => {
@@ -54,6 +54,7 @@ const ContextProvider = ({ children }) => {
     onAddExpense: addExpenseHandler,
     onDelete: DeleteExpenseHandler,
     onSetFilteredYear: setSelectedYear,
+    onAddFetchedExpensesToStore : setExpenses,
     selectedYear: selectedYear,
     filteredExpenses: filteredExpenses,
   };

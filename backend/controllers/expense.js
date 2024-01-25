@@ -55,3 +55,23 @@ exports.postExpense = async (req, res) => {
     });
   }
 };
+
+exports.deleteExpense = async (req, res) => {
+  const { expenseId } = req.params;
+
+  try {
+    const expense = await Expense.findByIdAndDelete(expenseId);
+    console.log(expense)
+
+    res.status(204).json({
+      message: "Expense has been deleted",
+      success: true,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Internal Server Error",
+      success: false,
+    });
+  }
+};

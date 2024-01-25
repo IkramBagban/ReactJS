@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 import ExpensesList from "./ExpensesList";
-// import ExpensesChart from "../Chart/ExpensesChart";
 import "./Expenses.css";
 import ExpenseContext from "../../store/expense-context";
 import useFetch from "../../CustomerHooks/useFetch";
@@ -23,30 +22,19 @@ const Expenses = () => {
   useEffect(() => {
     if (!fetchedExpenses) return console.log("expenses not fetched yet");
 
-    fetchedExpenses.forEach((expense) => {
-      expenseCtx.onAddExpense({ ...expense, date: new Date(expense.date) });
+    const expensesWithDateModified = fetchedExpenses.map((expense) => {
+      return { ...expense, date: new Date(expense.date) };
     });
+    expenseCtx.onAddFetchedExpensesToStore(expensesWithDateModified);
   }, [isLoading]);
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (isError) {
-    console.log("there is an error", isError);
-    // return
-  }
   return (
     <div>
       <Card className="expenses">
-        <ExpensesFilter
-        // selected={expenseCtx.filteredYear}
-        // onSetFilteredYear={setFilteredYear}
-        />
+        <ExpensesFilter />
         {/* <ExpensesChart /> */}
 
-        {/* {isLoading ? <h1>Loading...</h1>:<ExpensesList /> } */}
-        <ExpensesList isLoading={isLoading}/>
+        <ExpensesList isLoading={isLoading} />
       </Card>
     </div>
   );
