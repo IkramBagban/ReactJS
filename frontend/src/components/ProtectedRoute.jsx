@@ -1,19 +1,31 @@
 import React from "react";
-import Login from "./Auth/Login";
 import { Navigate, useLocation } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 function ProtectedRoute({ children }) {
-  const isLoggedin = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
   const location = useLocation();
   const publicRoutes = ["/login", "/signup"];
 
   const isPublicRoute = publicRoutes.includes(location.pathname);
 
-  if (isLoggedin && isPublicRoute) {
+  console.log("token", token);
+
+  let isAuthenticated;
+  try {
+    const decoded = jwtDecode(token);
+    isAuthenticated = decoded.userId === userId;
+  } catch (err) {
+    console.log("err", err);
+    isAuthenticated = false;
+  }
+
+  if (isAuthenticated && isPublicRoute) {
     return <Navigate to="/" />;
   }
 
-  if (!isLoggedin && !isPublicRoute) {
+  if (!isAuthenticated && !isPublicRoute) {
     return <Navigate to="/login" />;
   }
 
