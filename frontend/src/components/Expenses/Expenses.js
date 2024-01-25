@@ -22,10 +22,11 @@ const Expenses = () => {
   useEffect(() => {
     if (!fetchedExpenses) return console.log("expenses not fetched yet");
 
-    const expensesWithDateModified = fetchedExpenses.map((expense) => {
+    const expensesWithModifiedDate = fetchedExpenses.map((expense) => {
       return { ...expense, date: new Date(expense.date) };
     });
-    expenseCtx.onAddFetchedExpensesToStore(expensesWithDateModified);
+
+    expenseCtx.onAddFetchedExpensesToStore(expensesWithModifiedDate);
   }, [isLoading]);
 
   return (
