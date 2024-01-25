@@ -71,7 +71,7 @@ function Login() {
             />
           </div>
           <div className={styles.btnContainer}>
-            <button type="submit">Loginn</button>
+            <button type="submit">Login</button>
             <Link
               style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
               to="/signup"

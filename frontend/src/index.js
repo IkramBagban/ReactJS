@@ -29,8 +29,22 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
-  { path: "login", element: <Login /> },
-  { path: "signup", element: <Signup /> },
+  {
+    path: "login",
+    element: (
+      <ProtectedRoute>
+        <Login />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "signup",
+    element: (
+      <ProtectedRoute>
+        <Signup />
+      </ProtectedRoute>
+    ),
+  },
 ]);
 
 root.render(
