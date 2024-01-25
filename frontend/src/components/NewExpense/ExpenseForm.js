@@ -38,13 +38,22 @@ const ExpenseForm = () => {
     if (isEmpty(expenseData)) return;
 
     try {
+      const headers = {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      };
       const response = await postData(
         "api/v1/expenses/create-expense",
-        expenseData
+        expenseData,
+        headers
       );
+
+      console.log(response);
 
       if (response.status === 400) {
         throw new Error(response.data.errors[0].message);
+      }
+      if (response.status === 401) {
+        throw new Error("Authorization Failed!");
       }
 
       console.log(response.data);
