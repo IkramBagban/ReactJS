@@ -77,9 +77,6 @@ const Profile = ({ showProfile, onProfileToggle }) => {
               <p>
                 <strong>Email:</strong> {profile.email}
               </p>
-              <p>
-                <strong>Location:</strong> {profile.location}
-              </p>
               <button className={styles.editButton} onClick={handleEditToggle}>
                 Edit
               </button>
