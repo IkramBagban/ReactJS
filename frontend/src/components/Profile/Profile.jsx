@@ -26,16 +26,19 @@ const Profile = () => {
   return (
     <>
       <button onClick={toggleProfile}>Profile</button>
-      <div
-        className={
-          showProfile
-            ? `${styles.profileDetails} ${styles.active}`
-            : styles.profileDetails
-        }
-      >
-        <p>Name: John Doe</p>
-        <p>Email: johndoe@example.com</p>
-        <p>Location: New York, USA</p>
+      <div className={
+            showProfile
+              ? `${styles.profileDetails} ${styles.active}`
+              : styles.profileDetails
+          }>
+        <button onClick={()=> setShowProfile(false)}>close</button>
+        <div
+          
+        >
+          <p>Name: John Doe</p>
+          <p>Email: johndoe@example.com</p>
+          <p>Location: New York, USA</p>
+        </div>
       </div>
     </>
   );

@@ -50,7 +50,6 @@ function Signup() {
         <h3>Signup</h3>
         <div className={styles.fieldControls}>
           <div className={styles.fieldContainer}>
-            <div className={styles.fieldContainer}>
               <label htmlFor="username">Username</label>
               <input
                 value={inputValue.username}
@@ -58,6 +57,8 @@ function Signup() {
                 onChange={inputChangeHandler}
               />
             </div>
+            
+            <div className={styles.fieldContainer}>
             <label htmlFor="email">Email</label>
             <input
               value={inputValue.email}
@@ -74,7 +75,7 @@ function Signup() {
             />
           </div>
           <div className={styles.btnContainer}>
-            <button>Signup</button>
+            <button className={styles.button}>Signup</button>
             <Link
               style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
               to="/login"

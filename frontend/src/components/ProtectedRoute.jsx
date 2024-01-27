@@ -13,6 +13,7 @@ function ProtectedRoute({ children }) {
   let isAuthenticated;
   try {
     const decoded = jwtDecode(token);
+    console.log(decoded)
     isAuthenticated = decoded.userId === userId;
   } catch (err) {
     console.log("err", err);

@@ -16,26 +16,23 @@ const Header = () => {
     expenseCtx.onClearContext();
   };
 
-  const profileHandler = () =>{
-    
-  }
+  const profileHandler = () => {};
   return (
     <header className={styles.header}>
       <div className={styles.logo}>Logo</div>
-      <nav className={styles.nav}>
-        <button onClick={profileHandler} className={styles.navItem}>
+      <ul className={styles.nav}>
+        <li onClick={profileHandler} className={styles.navItem}>
           Profile
-        </button>
-        <button
+        </li>
+        <li
           style={{ background: "transparent" }}
           onClick={logoutHandler}
           className={styles.navItem}
         >
           Logout
-        </button>
-      </nav>
+        </li>
+      </ul>
     </header>
-    // </div>
   );
 };
 

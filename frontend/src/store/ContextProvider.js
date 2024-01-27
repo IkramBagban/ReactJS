@@ -38,7 +38,7 @@ const ContextProvider = ({ children }) => {
   };
 
   const DeleteExpenseHandler = (id) => {
-    const filteredExpenses = expenses.filter((expense) => expense._id !== id);
+    const filteredExpenses = expenses?.filter((expense) => expense._id !== id);
 
     setExpenses(filteredExpenses);
   };

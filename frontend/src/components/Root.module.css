@@ -9,13 +9,13 @@
 
 .btnContainer {
     background-color: #a892ee;
-    padding: 1rem;
+    /* padding: 1rem; */
     margin: 2rem auto;
-    width: 60%;
+    width: 50%;
     max-width: 95%;
     border-radius: 12px;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     /* width: 80%; */
   }
   
