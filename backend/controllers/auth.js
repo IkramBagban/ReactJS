@@ -4,6 +4,17 @@ const { validationResult } = require("express-validator");
 
 const User = require("../model/user");
 
+const nodemailer = require("nodemailer");
+const sendgridTransport = require("nodemailer-sendgrid-transport");
+
+const transporter = nodemailer.createTransport(
+  sendgridTransport({
+    auth: {
+      api_key: process.env.SENDGRID_API_KEY,
+    },
+  })
+);
+
 exports.getUser = async (req, res) => {
   const { userId } = req.params;
   try {
@@ -147,5 +158,118 @@ console.log(username)
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' , success : false});
+  }
+};
+
+
+
+exports.postSendOTP = async (req, res, next) => {
+  const email = req.body.email;
+
+  try {
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "email not found", success: false });
+    }
+    let otp = user.otp;
+
+    if (!user.otp || user.otpExpiration <= Date.now()) {
+      console.log("in");
+      otp = Math.floor(Math.random() * 9000 + 1000);
+      user.otp = otp;
+      user.otpExpiration = Date.now() + 300000;
+    }
+
+    await user.save();
+    transporter.sendMail({
+      to: email,
+      from: "bagbanikram@gmail.com",
+      subject: "OTP to forget password.",
+      html: `
+            <div>
+                <h3>OTP</h3>
+                ${otp}
+            </div>
+            `,
+    });
+    res
+      .status(200)
+      .json({ message: "OTP has sent to your email", otp: otp, success: true });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal error", success: false });
+  }
+};
+
+exports.postVerifyOtp = async (req, res, next) => {
+  const { email, otp } = req.body;
+
+  try {
+    const user = await User.findOne({
+      email: email,
+      otp: otp,
+    });
+    console.log("user", user);
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid OTP", success: false });
+    }
+
+    if (user.otpExpiration <= Date.now()) {
+      return res.status(401).json({ message: "Otp expired", success: false });
+    }
+    user.otp = undefined;
+    user.otpExpiration = undefined;
+
+    const response = await user.save();
+    if (!response) {
+      return res.status(500).json({ message: "server error", success: false });
+    }
+    res
+      .status(200)
+      .json({ message: "OTP verified successfully", success: true });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "server error", success: false });
+  }
+};
+
+exports.postResetPassword = async (req, res, next) => {
+  const { email, Password, confirmPassword } = req.body;
+  try {
+    console.log(req.body);
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Email Not Found.", success: false });
+    }
+
+    if (Password !== confirmPassword) {
+      return res
+        .status(401)
+        .json({ message: "password don't match.", success: false });
+    }
+
+    const hashedPassword = await bcrypt.hash(Password, 12);
+
+    if (!hashedPassword) {
+      return res.status(500).json({ message: "server error", success: false });
+    }
+    user.password = hashedPassword;
+    // user.confirmPassword = confirmPassword;
+
+    const response = await user.save();
+
+    if (response) {
+      res.status(200).json({ message: "Password Reset.", success: true });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Password reset failed", success: false });
+    console.log(err);
   }
 };
