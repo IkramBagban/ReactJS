@@ -15,26 +15,20 @@
 import React, { useState } from "react";
 import styles from "./Profile.module.css";
 
-const Profile = () => {
-  const [showProfile, setShowProfile] = useState(false);
-
-  const toggleProfile = () => {
-    setShowProfile(!showProfile);
-    console.log("show profile", showProfile);
-  };
-
+const Profile = ({ showProfile, onProfileToggle }) => {
+    console.log('showprofile',showProfile)
   return (
     <>
-      <button onClick={toggleProfile}>Profile</button>
-      <div className={
-            showProfile
-              ? `${styles.profileDetails} ${styles.active}`
-              : styles.profileDetails
-          }>
-        <button onClick={()=> setShowProfile(false)}>close</button>
-        <div
-          
-        >
+      {/* <button onClick={onProfileToggle}>Profile</button> */}
+      <div
+        className={
+          showProfile
+            ? `${styles.profileDetails} ${styles.active}`
+            : styles.profileDetails
+        }
+      >
+        <button onClick={onProfileToggle}>close</button>
+        <div>
           <p>Name: John Doe</p>
           <p>Email: johndoe@example.com</p>
           <p>Location: New York, USA</p>
