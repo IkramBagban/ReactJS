@@ -1,14 +1,38 @@
 .profileDetails {
-  background-color: white;
   position: fixed;
-  right: -100%;
-  width: 25rem;
-
-  height: 100vh;
-  top: 0;
-  transition: all 0.9s;
+  top: 0; 
+  right: -300px; 
+  width: 300px; 
+  height: 100vh; 
+  /* background: #7996ee;  */
+  background: #ac9be5; 
+      /* color: white; */
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1); 
+  transition: right 0.3s ease-in-out; 
+  z-index: 1000; 
+  padding: 20px; 
+  box-sizing: border-box;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: start; 
+  overflow-y: auto;
 }
 
 .active {
-  right: 0;
+  right: 0; /* Slide in to align with the right edge of the viewport */
 }
+
+.button {
+  align-self: flex-end;
+  margin: 10px 0;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.button:hover {
+  background-color: #bf453c;
+}
+
