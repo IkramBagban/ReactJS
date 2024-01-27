@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.css";
 import useFetch from "../../CustomerHooks/useFetch";
+import axios from "axios";
+import { API_URL } from "../../utils/var";
 
 const Profile = ({ showProfile, onProfileToggle }) => {
   const [editMode, setEditMode] = useState(false);
@@ -29,9 +31,31 @@ const Profile = ({ showProfile, onProfileToggle }) => {
     }));
   };
 
-  const handleUpdateProfile = () => {
-    setEditMode(false);
-    console.log("Profile updated:", profile);
+  const handleUpdateProfile = async () => {
+    try {
+      const isAnyFieldEmpty = Object.values(profile).some((val) => val === "");
+      if (isAnyFieldEmpty) {
+        console.log("Please fill in all fields.");
+        return;
+      }
+      const response = await axios.patch(`${API_URL}/api/v1/auth/user/${userId}`, {
+        username: profile.username,
+        email: profile.email,
+      });
+
+      console.log('response',response)
+      if (response.status === 200) {
+        console.log("Profile updated successfully:", response.data);
+        setEditMode(false);
+      } else {
+        console.log("Failed to update profile");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      if(error.response.status === 409){
+        alert('Email already in use. Choose another email')
+      }
+    }
   };
 
   return (
@@ -49,7 +73,7 @@ const Profile = ({ showProfile, onProfileToggle }) => {
         <>
           <input
             type="text"
-            name="name"
+            name="username"
             value={profile.username}
             onChange={handleInputChange}
             className={styles.input}

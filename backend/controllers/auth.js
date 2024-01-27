@@ -115,3 +115,37 @@ exports.postSignup = async (req, res) => {
     });
   }
 };
+
+
+
+
+exports.updateUser = async (req, res) => {
+  const {userId} = req.params; 
+  const { username, email } = req.body; 
+console.log(username)
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' , success : false});
+    }
+
+    const isUserExist = await User.findOne({email:email, _id: { $ne: userId }});
+    console.log('iseruserexist', isUserExist)
+    
+    if (isUserExist) {
+      return res
+        .status(409)
+        .json({ message: "Email Already in user", success: false });
+    }
+
+    user.username = username || user.username;
+    user.email = email || user.email;
+    await user.save();
+
+    res.status(200).json({ message: 'User profile updated successfully', user , success : true});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' , success : false});
+  }
+};
