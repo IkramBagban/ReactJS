@@ -19,10 +19,10 @@
 }
 
 .active {
-  right: 0; /* Slide in to align with the right edge of the viewport */
+  right: 0; 
 }
 
-.button {
+.closeButton {
   align-self: flex-end;
   margin: 10px 0;
   padding: 5px 10px;
@@ -32,7 +32,50 @@
   border: none;
   border-radius: 5px;
 }
-.button:hover {
+.closeButton:hover {
   background-color: #bf453c;
 }
 
+/* Profile.module.css */
+/* ... existing styles ... */
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .editButton,
+  .saveButton {
+    padding: 5px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .closeButton {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .editButton {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .saveButton {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  .closeButton:hover,
+  .editButton:hover,
+  .saveButton:hover {
+    opacity: 0.8;
+  }
+  
+  
