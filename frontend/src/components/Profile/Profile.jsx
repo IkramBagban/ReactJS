@@ -1,56 +1,21 @@
-// // import React from "react";
-
-// // function Profile() {
-// //   return (
-// //     <div>
-// //       <h2>Profile</h2>
-// //       <h4>John DOe</h4>
-// //       <h4>email@gmail.com</h4>
-// //     </div>
-// //   );
-// // }
-
-// // export default Profile;
-
-// import React, { useState } from "react";
-// import styles from "./Profile.module.css";
-
-// const Profile = ({ showProfile, onProfileToggle }) => {
-//   console.log("showprofile", showProfile);
-//   return (
-//     <>
-//       <div
-//         className={
-//           showProfile
-//             ? `${styles.profileDetails} ${styles.active}`
-//             : styles.profileDetails
-//         }
-//       >
-//         <button className={styles.button} onClick={onProfileToggle}>
-//           close
-//         </button>
-//         <div>
-//           <p>Name: John Doe</p>
-//           <p>Email: johndoe@example.com</p>
-//           <p>Location: New York, USA</p>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Profile;
-
-import React, { useState } from 'react';
-import styles from './Profile.module.css';
+import React, { useEffect, useState } from "react";
+import styles from "./Profile.module.css";
+import useFetch from "../../CustomerHooks/useFetch";
 
 const Profile = ({ showProfile, onProfileToggle }) => {
   const [editMode, setEditMode] = useState(false);
   const [profile, setProfile] = useState({
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    location: 'New York, USA',
+    username: "",
+    email: "",
   });
+
+  const userId = localStorage.getItem("userId");
+  const [user, isLoading] = useFetch(`api/v1/auth/user/${userId}`);
+
+  useEffect(() => {
+    if (isLoading) return;
+    setProfile({ username: user?.username, email: user.email });
+  }, [isLoading]);
 
   const handleEditToggle = () => {
     setEditMode(!editMode);
@@ -66,18 +31,26 @@ const Profile = ({ showProfile, onProfileToggle }) => {
 
   const handleUpdateProfile = () => {
     setEditMode(false);
-    console.log('Profile updated:', profile);
+    console.log("Profile updated:", profile);
   };
 
   return (
-    <div className={showProfile ? `${styles.profileDetails} ${styles.active}` : styles.profileDetails}>
-      <button className={styles.closeButton} onClick={onProfileToggle}>Close</button>
+    <div
+      className={
+        showProfile
+          ? `${styles.profileDetails} ${styles.active}`
+          : styles.profileDetails
+      }
+    >
+      <button className={styles.closeButton} onClick={onProfileToggle}>
+        Close
+      </button>
       {editMode ? (
         <>
           <input
             type="text"
             name="name"
-            value={profile.name}
+            value={profile.username}
             onChange={handleInputChange}
             className={styles.input}
           />
@@ -88,21 +61,30 @@ const Profile = ({ showProfile, onProfileToggle }) => {
             onChange={handleInputChange}
             className={styles.input}
           />
-          <input
-            type="text"
-            name="location"
-            value={profile.location}
-            onChange={handleInputChange}
-            className={styles.input}
-          />
-          <button className={styles.saveButton} onClick={handleUpdateProfile}>Save</button>
+          <button className={styles.saveButton} onClick={handleUpdateProfile}>
+            Save
+          </button>
         </>
       ) : (
         <>
-          <p><strong>Name:</strong> {profile.name}</p>
-          <p><strong>Email:</strong> {profile.email}</p>
-          <p><strong>Location:</strong> {profile.location}</p>
-          <button className={styles.editButton} onClick={handleEditToggle}>Edit</button>
+          {isLoading ? (
+            <h4>Fetching user name...</h4>
+          ) : (
+            <>
+              <p>
+                <strong>Name:</strong> {profile?.username}
+              </p>
+              <p>
+                <strong>Email:</strong> {profile.email}
+              </p>
+              <p>
+                <strong>Location:</strong> {profile.location}
+              </p>
+              <button className={styles.editButton} onClick={handleEditToggle}>
+                Edit
+              </button>
+            </>
+          )}
         </>
       )}
     </div>
@@ -110,4 +92,3 @@ const Profile = ({ showProfile, onProfileToggle }) => {
 };
 
 export default Profile;
-

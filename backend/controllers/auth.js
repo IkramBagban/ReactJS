@@ -4,6 +4,31 @@ const { validationResult } = require("express-validator");
 
 const User = require("../model/user");
 
+exports.getUser = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const user = await User.findOne({ _id: userId });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "User Not Found", success: false });
+    }
+
+    res.status(200).json({
+      message: "User Fetched Successfully",
+      success: true,
+      data : user
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Internal Server Error",
+      success: false,
+      error: err.message,
+    });
+  }
+};
+
 exports.postLogin = async (req, res) => {
   const { email, password } = req.body;
 
