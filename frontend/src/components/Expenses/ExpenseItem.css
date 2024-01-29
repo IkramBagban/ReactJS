@@ -10,6 +10,14 @@
   margin-right: 4; */
 }
 .deleteButton {
+  font: inherit;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 1px solid #40005d;
+  background-color: #40005d;
+  color: white;
+  border-radius: 12px;
+  margin: 0 1rem;
   cursor: pointer;
   background: transparent;
   border-color: white;
@@ -87,3 +95,4 @@
   margin-right: 4;
   padding: 1rem 1rem;
 }
+

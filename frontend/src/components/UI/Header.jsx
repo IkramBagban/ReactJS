@@ -6,7 +6,6 @@ import ExpenseContext from "../../store/expense-context";
 const Header = ({onLogout,onProfileToggle}) => {
  
 
-  const profileHandler = () => {};
   return (
     <header className={styles.header}>
       <div className={styles.logo}>Logo</div>

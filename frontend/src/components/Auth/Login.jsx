@@ -70,13 +70,29 @@ function Login() {
               onChange={inputChangeHandler}
             />
           </div>
-          <div className={styles.btnContainer}>
+          {/* <div className={styles.btnContainer}>
             <button type="submit">Login</button>
             <Link
               style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
               to="/signup"
             >
               Signup
+            </Link>
+          </div> */}
+
+<div className={styles.btnContainer}>
+            <button type="submit">Login</button>
+            <Link
+              style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
+              to="/signup"
+            >
+              Signup
+            </Link>
+            <Link
+              style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
+              to="/forgot-password" // Modify this to your forgot password route
+            >
+              Forgot Password?
             </Link>
           </div>
         </div>

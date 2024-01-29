@@ -26,8 +26,6 @@ const ContextProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([]);
   const [selectedYear, setSelectedYear] = useState("all");
 
-
-
   const addExpenseHandler = (expense) => {
     console.log(expense);
 
@@ -49,18 +47,18 @@ const ContextProvider = ({ children }) => {
     return expense.date.getFullYear().toString() === selectedYear;
   });
 
-  const clearContext = () =>{
-    setExpenses('')
-    setSelectedYear('all')
-  }
+  const clearContext = () => {
+    setExpenses([]);
+    setSelectedYear("all");
+  };
 
   const value = {
     expenses: expenses,
     onAddExpense: addExpenseHandler,
     onDelete: DeleteExpenseHandler,
     onSetFilteredYear: setSelectedYear,
-    onAddExpensesToContext : setExpenses,
-    onClearContext : clearContext,
+    onAddExpensesToContext: setExpenses,
+    onClearContext: clearContext,
     selectedYear: selectedYear,
     filteredExpenses: filteredExpenses,
   };
