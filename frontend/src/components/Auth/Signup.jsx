@@ -77,10 +77,6 @@ function Signup() {
           <div className={styles.btnContainer}>
             <button className={styles.button}>Signup</button>
             <div
-              // style={{
-              //   alignSelf: "center",
-              //   margin: "1rem 0 0 0",
-              // }}
               className={styles.secondBtnContainer}
             >
               Already have an account?

@@ -19,11 +19,9 @@ function VerifyOtp() {
       console.log("res", response);
 
       if (response.status === 401) {
-        // const validationError = response.data.errors[0].msg;
         throw new Error("OTP Invalid Or Expired");
       }
       if (response.status === 500) {
-        // const validationError = response.data.errors[0].msg;
         throw new Error("Internal Server Error");
       }
 

@@ -14,7 +14,6 @@ const SendOtp = () => {
     console.log('res',response);
 
       if (response.status === 404) {
-        // const validationError = response.data.errors[0].msg;
         throw new Error("Email doesn't exist.");
       }
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
@@ -15,7 +15,7 @@ const Expenses = () => {
   const headers = {
     Authroization: "Bearer " + token,
   };
-  const [fetchedExpenses, isLoading, isError] = useFetch(
+  const [fetchedExpenses, isLoading] = useFetch(
     `api/v1/expenses/${userId}`,
     headers
   );
@@ -34,8 +34,6 @@ const Expenses = () => {
     <div>
       <Card className="expenses">
         <ExpensesFilter />
-        {/* <ExpensesChart /> */}
-
         <ExpensesList isLoading={isLoading} />
       </Card>
     </div>
