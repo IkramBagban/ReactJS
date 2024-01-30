@@ -76,12 +76,22 @@ function Signup() {
           </div>
           <div className={styles.btnContainer}>
             <button className={styles.button}>Signup</button>
-            <Link
-              style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
-              to="/login"
+            <div
+              style={{
+                alignSelf: "center",
+                margin: "1rem 0 0 0",
+              }}
             >
-              Login
-            </Link>
+              Already have an account?
+              <Link
+                style={{
+                  margin: "0 2px",
+                }}
+                to="/login"
+              >
+                Login
+              </Link>
+            </div>
           </div>
         </div>
       </form>
