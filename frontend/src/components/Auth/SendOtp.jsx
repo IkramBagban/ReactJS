@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import styles from './SendOtp.module.css'; 
+import { useNavigate } from 'react-router-dom';
 const SendOtp = () => {
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    navigate('/verify')
     console.log('Sending OTP to:', email);
   };
 

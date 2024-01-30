@@ -48,7 +48,7 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
-  
+
   {
     path: "forgot-password",
     element: (
@@ -73,7 +73,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
-  
 ]);
 
 root.render(

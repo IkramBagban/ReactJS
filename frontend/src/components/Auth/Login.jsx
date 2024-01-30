@@ -84,15 +84,15 @@ function Login() {
             <button type="submit">Login</button>
             <Link
               style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
-              to="/signup"
+              to="/forgot-password" 
             >
-              Signup
+              Forgot Password
             </Link>
             <Link
               style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
-              to="/forgot-password" // Modify this to your forgot password route
+              to="/signup"
             >
-              Forgot Password?
+              Signup
             </Link>
           </div>
         </div>

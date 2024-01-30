@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import styles from './SendOtp.module.css'; 
+import { useNavigate } from 'react-router-dom';
 
 
 function VerifyOtp() {
     
   const [otp, setOtp] = useState('');
+    const navigate = useNavigate();
 
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
+        navigate('/reset-password')
     console.log('OTP:', otp);
   };
   return (

@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import styles from './SendOtp.module.css'; 
+import { useNavigate } from 'react-router-dom';
 
 
 function Resetpassword() {
     
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
       event.preventDefault();
+          navigate('/login')
+
       console.log('password', password);
       console.log('confirmPassword', confirmPassword);
     };
