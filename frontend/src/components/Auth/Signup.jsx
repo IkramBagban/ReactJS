@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Signup.module.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../utils/api";
 
 function Signup() {
@@ -50,15 +50,15 @@ function Signup() {
         <h3>Signup</h3>
         <div className={styles.fieldControls}>
           <div className={styles.fieldContainer}>
-              <label htmlFor="username">Username</label>
-              <input
-                value={inputValue.username}
-                id="username"
-                onChange={inputChangeHandler}
-              />
-            </div>
-            
-            <div className={styles.fieldContainer}>
+            <label htmlFor="username">Username</label>
+            <input
+              value={inputValue.username}
+              id="username"
+              onChange={inputChangeHandler}
+            />
+          </div>
+
+          <div className={styles.fieldContainer}>
             <label htmlFor="email">Email</label>
             <input
               value={inputValue.email}
