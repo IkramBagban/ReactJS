@@ -238,7 +238,8 @@ exports.postVerifyOtp = async (req, res, next) => {
 };
 
 exports.postResetPassword = async (req, res, next) => {
-  const { email, Password, confirmPassword } = req.body;
+  const { email, password, confirmPassword } = req.body;
+  console.log(email, password, confirmPassword)
   try {
     console.log(req.body);
     const user = await User.findOne({ email: email });
@@ -249,13 +250,13 @@ exports.postResetPassword = async (req, res, next) => {
         .json({ message: "Email Not Found.", success: false });
     }
 
-    if (Password !== confirmPassword) {
+    if (password !== confirmPassword) {
       return res
         .status(401)
-        .json({ message: "password don't match.", success: false });
+        .json({ message: "password doesn't match.", success: false });
     }
 
-    const hashedPassword = await bcrypt.hash(Password, 12);
+    const hashedPassword = await bcrypt.hash(password, 12);
 
     if (!hashedPassword) {
       return res.status(500).json({ message: "server error", success: false });

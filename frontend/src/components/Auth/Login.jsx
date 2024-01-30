@@ -34,7 +34,7 @@ function Login() {
         throw new Error("Server Side Error");
       }
 
-      if(response.status !== 200){
+      if (response.status !== 200) {
         throw new Error("Something went wrong. Please try again.");
       }
 
@@ -45,7 +45,7 @@ function Login() {
       }
     } catch (err) {
       console.log("error => ", err);
-      alert(err)
+      alert(err);
     }
   };
 
@@ -70,21 +70,13 @@ function Login() {
               onChange={inputChangeHandler}
             />
           </div>
-          {/* <div className={styles.btnContainer}>
-            <button type="submit">Login</button>
-            <Link
-              style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
-              to="/signup"
-            >
-              Signup
-            </Link>
-          </div> */}
 
-<div className={styles.btnContainer}>
+
+          <div className={styles.btnContainer}>
             <button type="submit">Login</button>
             <Link
               style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
-              to="/forgot-password" 
+              to="/forgot-password"
             >
               Forgot Password
             </Link>

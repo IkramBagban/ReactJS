@@ -5,6 +5,7 @@ import Expenses from "./Expenses/Expenses";
 import Header from "./UI/Header";
 import Profile from "./Profile/Profile";
 import ExpenseContext from "../store/expense-context";
+import backgroundImage from '../bg.jpg'
 
 const Root = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const Root = () => {
   };
   return (
     <div className={styles.root}>
+     
       <Header onLogout={logoutHandler} onProfileToggle={profileToggleHandler} />
       <Profile showProfile={showProfile} onProfileToggle={profileToggleHandler}/>
       <div className={styles.btnContainer}>
