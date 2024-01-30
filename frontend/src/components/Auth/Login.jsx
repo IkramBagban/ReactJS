@@ -75,11 +75,12 @@ function Login() {
             <button type="submit">Login</button>
             <Link
               style={{ alignSelf: "center", margin: "1rem 0 0 0"}}
+              className={styles.forgetButton}
               to="/forgot-password"
             >
               Forgot Password
             </Link>
-            <div style={{ alignSelf: "center", margin: "1rem 0 0 0" }}>
+            <div className={styles.secondBtnContainer}>
               Don't have an account yet?{" "}
               <Link
                 style={{

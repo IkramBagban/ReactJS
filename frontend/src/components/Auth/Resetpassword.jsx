@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SendOtp.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postData } from "../../utils/api";
 import axios from "axios";
 import { API_URL } from "../../utils/var";
 

@@ -53,13 +53,24 @@ button:active {
   border-color: #510674;
 }
 
-/* button.alternative {
-  color: #220131;
-  border-color: transparent;
-  background-color: transparent;
+@media (max-width: 726px) {
+  .new-expense__controls {
+    display: block;
+  }
+
+  .new-expense__control input {
+    width: 100%;
+  }
 }
 
-button.alternative:hover,
-button.alternative:active {
-  background-color: #ddb3f8;
-} */
+@media (max-width: 375px) {
+  .new-expense__actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .new-expense__actions button {
+    padding: 1rem 1rem;
+    font-size: 0.8rem;
+  }
+}
