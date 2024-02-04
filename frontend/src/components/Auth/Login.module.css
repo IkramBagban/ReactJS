@@ -30,21 +30,6 @@
   text-align: left;
 }
 
-.fieldContainer label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.fieldContainer input {
-  font: inherit;
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  width: 20rem;
-  max-width: 100%;
-}
-
 .btnContainer {
   width: 80%;
   display: flex;
@@ -85,14 +70,7 @@
 }
 
 @media (max-width: 375px) {
-  .fieldContainer {
-    width: 100%;
-  }
-  .fieldContainer input {
-    width: 100%;
-  }
-
   .secondBtnContainer {
-    font-size: 0.861rem;
+    font-size: 0.83rem;
   }
 }

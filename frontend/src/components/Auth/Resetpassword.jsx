@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SendOtp.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -7,11 +7,21 @@ import { API_URL } from "../../utils/var";
 function Resetpassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   const location = useLocation();
-  const { email } = location.state;
+  console.log(location.state);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (!location.state || !location.state.email) {
+      navigate("/login");
+    }
+  }, [location.state, navigate]);
+
+  const email = location.state?.email;
+
+  if (!email) return;
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();

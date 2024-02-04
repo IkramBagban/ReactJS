@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { postData } from "../../utils/api";
+import Input from "../UI/Input";
 
 function Login() {
   const [inputValue, setInputValue] = useState({
@@ -51,27 +52,25 @@ function Login() {
       <form onSubmit={submitHandler} className={styles.container}>
         <h3>Login</h3>
         <div className={styles.fieldControls}>
-          <div className={styles.fieldContainer}>
-            <label htmlFor="email">Email</label>
-            <input
-              value={inputValue.email}
-              id="email"
-              onChange={inputChangeHandler}
-            />
-          </div>
-          <div className={styles.fieldContainer}>
-            <label htmlFor="password">Password</label>
-            <input
-              value={inputValue.password}
-              id="password"
-              onChange={inputChangeHandler}
-            />
-          </div>
+          <Input
+            value={inputValue.email}
+            id="email"
+            onChange={inputChangeHandler}
+            label ={"Email"}
+          />
+          <Input
+            value={inputValue.password}
+            id="password"
+            onChange={inputChangeHandler}
+            label ={"Password"}
+            type ='password'
+          />
+
 
           <div className={styles.btnContainer}>
             <button type="submit">Login</button>
             <Link
-              style={{ alignSelf: "center", margin: "1rem 0 0 0"}}
+              style={{ alignSelf: "center", margin: "1rem 0 0 0" }}
               className={styles.forgetButton}
               to="/forgot-password"
             >

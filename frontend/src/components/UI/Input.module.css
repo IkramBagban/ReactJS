@@ -1,0 +1,44 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.container label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.inputField {
+  font: inherit;
+  padding: 0.5rem;
+  padding-right: 2rem; /* Make space for the visibility toggle icon */
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 20rem;
+  max-width: 100%;
+}
+
+.visibilityToggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.visibilityToggle:hover {
+  background: none;
+  color: rgb(102, 98, 98);
+}
+
+@media (max-width: 375px) {
+  .container, .container input {
+    width: 100%;
+  }
+}
