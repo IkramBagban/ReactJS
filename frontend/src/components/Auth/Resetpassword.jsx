@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./SendOtp.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "../../utils/var";
+import { API_URL } from "../../utils/constants";
 
 function Resetpassword() {
   const [password, setPassword] = useState("");
@@ -10,7 +10,7 @@ function Resetpassword() {
   const navigate = useNavigate();
 
   const location = useLocation();
-  console.log(location.state);
+  // console.log(location.state);
 
   useEffect(() => {
     if (!location.state || !location.state.email) {
@@ -43,11 +43,7 @@ function Resetpassword() {
         throw new Error("Something went wrong!");
       }
 
-      console.log(email, password, confirmPassword);
       navigate("/login");
-
-      console.log("password", password);
-      console.log("confirmPassword", confirmPassword);
     } catch (err) {
       console.log(err);
       alert(err || "Something went wrong");

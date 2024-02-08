@@ -18,7 +18,7 @@ const useFetch = (endpoint, headers) => {
           response = await fetchData(endpoint);
         }
 
-        console.log(response.data)
+        console.log(response.data);
         if (response.status === 200) {
           setDataState({
             data: response.data.data,
@@ -39,11 +39,9 @@ const useFetch = (endpoint, headers) => {
     };
 
     fetchApiData();
-
-
   }, [endpoint]);
 
   return [dataState.data, dataState.isLoading, dataState.isError];
 };
 
-export default useFetch 
+export default useFetch;

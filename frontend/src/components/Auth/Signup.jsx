@@ -16,8 +16,6 @@ function Signup() {
   const inputChangeHandler = (e) => {
     const { value, id } = e.target;
     setInputValue((prev) => ({ ...prev, [id]: value }));
-
-    console.log(inputValue);
   };
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -38,7 +36,6 @@ function Signup() {
       }
 
       navigate("/login");
-      console.log("loggedin");
     } catch (err) {
       console.log(err);
       alert(err || "Something went wrong");

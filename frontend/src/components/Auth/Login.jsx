@@ -15,8 +15,6 @@ function Login() {
   const inputChangeHandler = (e) => {
     const { value, id } = e.target;
     setInputValue((prev) => ({ ...prev, [id]: value }));
-
-    console.log(inputValue);
   };
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -42,8 +40,8 @@ function Login() {
         navigate("/");
       }
     } catch (err) {
-      console.log("error => ", err);
-      alert(err);
+      // console.log("error => ", err);
+      alert(err || "Something went wrong");
     }
   };
 
@@ -56,17 +54,15 @@ function Login() {
             value={inputValue.email}
             id="email"
             onChange={inputChangeHandler}
-            label ={"Email"}
+            label={"Email"}
           />
           <Input
             value={inputValue.password}
             id="password"
             onChange={inputChangeHandler}
-            label ={"Password"}
-            type ='password'
+            label={"Password"}
+            type='password'
           />
-
-
           <div className={styles.btnContainer}>
             <button type="submit">Login</button>
             <Link

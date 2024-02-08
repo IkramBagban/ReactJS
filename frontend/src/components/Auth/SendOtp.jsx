@@ -23,8 +23,7 @@ const SendOtp = () => {
 
       // navigate("/login");
     navigate('/verify',{ state: { email: email } })
-    console.log(email)
-
+    // console.log(email)
 
     console.log('Sending OTP to:', email);
   } catch (err) {

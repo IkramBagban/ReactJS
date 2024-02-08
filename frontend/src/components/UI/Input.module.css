@@ -16,7 +16,7 @@
 .inputField {
   font: inherit;
   padding: 0.5rem;
-  padding-right: 2rem; /* Make space for the visibility toggle icon */
+  padding-right: 2rem;
   border-radius: 6px;
   border: 1px solid #ccc;
   width: 20rem;

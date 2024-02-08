@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./Header.module.css";
-import { useNavigate } from "react-router-dom";
-import ExpenseContext from "../../store/expense-context";
 
 const Header = ({onLogout,onProfileToggle}) => {
  
