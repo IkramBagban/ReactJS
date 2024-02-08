@@ -6,6 +6,8 @@ function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
   const location = useLocation();
+  console.log('w')
+
   const publicRoutes = [
     "/login",
     "/signup",

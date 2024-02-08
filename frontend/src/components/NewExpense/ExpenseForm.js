@@ -48,7 +48,7 @@ const ExpenseForm = () => {
         headers
       );
 
-      console.log(response);
+      // console.log(response);
 
       if (response.status === 400) {
         throw new Error(response.data.errors[0].message);
