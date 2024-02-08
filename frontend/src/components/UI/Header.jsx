@@ -23,4 +23,4 @@ const Header = ({onLogout,onProfileToggle}) => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

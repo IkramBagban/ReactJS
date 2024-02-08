@@ -112,4 +112,4 @@ const Profile = ({ showProfile, onProfileToggle }) => {
   );
 };
 
-export default Profile;
+export default React.memo(Profile);

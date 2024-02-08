@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Root.module.css";
 import Expenses from "./Expenses/Expenses";
@@ -14,22 +14,22 @@ const Root = () => {
   };
 
   const expenseCtx = useContext(ExpenseContext);
+
   const logoutHandler = () => {
     const confirmLogout = window.confirm("do you want to logout?");
     if (!confirmLogout) return;
 
     localStorage.clear();
     navigate("/login");
-
     expenseCtx.onClearContext();
   };
 
   const [showProfile, setShowProfile] = useState(false);
 
-  const profileToggleHandler = () => {
+  const profileToggleHandler = useCallback(() => {
     setShowProfile(!showProfile);
-    console.log("show profile", showProfile);
-  };
+  }, [showProfile]);
+
   return (
     <div className={styles.root}>
       <Header onLogout={logoutHandler} onProfileToggle={profileToggleHandler} />

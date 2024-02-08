@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './SendOtp.module.css'; 
+import styles from './SendOtp.module.css';
 import { useNavigate } from 'react-router-dom';
 import { postData } from '../../utils/api';
 const SendOtp = () => {
@@ -8,10 +8,10 @@ const SendOtp = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try{
+    try {
 
-    const response = await postData("api/v1/auth/sendotp", {email : email});
-    console.log('res',response);
+      const response = await postData("api/v1/auth/sendotp", { email: email });
+      console.log('res', response);
 
       if (response.status === 404) {
         throw new Error("Email doesn't exist.");
@@ -21,15 +21,13 @@ const SendOtp = () => {
         throw new Error("Something went wrong!");
       }
 
-      // navigate("/login");
-    navigate('/verify',{ state: { email: email } })
-    // console.log(email)
+      navigate('/verify', { state: { email: email } })
 
-    console.log('Sending OTP to:', email);
-  } catch (err) {
-    console.log(err);
-    alert(err || "Something went wrong");
-  }
+      console.log('Sending OTP to:', email);
+    } catch (err) {
+      console.log(err);
+      alert(err || "Something went wrong");
+    }
   };
 
   return (

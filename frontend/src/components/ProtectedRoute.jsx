@@ -6,7 +6,6 @@ function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
   const location = useLocation();
-  console.log('w')
 
   const publicRoutes = [
     "/login",
@@ -21,7 +20,12 @@ function ProtectedRoute({ children }) {
   let isAuthenticated;
   try {
     const decoded = jwtDecode(token);
-    isAuthenticated = decoded.userId === userId;
+    console.log(decoded)
+    if (decoded.userId === userId && decoded.exp <= Date.now()) {
+      isAuthenticated = true
+    } else {
+      isAuthenticated = false
+    }
   } catch (err) {
     isAuthenticated = false;
   }

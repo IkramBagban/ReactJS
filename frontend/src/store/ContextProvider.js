@@ -21,9 +21,11 @@ const ContextProvider = ({ children }) => {
   };
 
   const filteredExpenses = expenses.filter((expense) => {
+    
     if (selectedYear === "all") return expense;
 
     return expense.date.getFullYear().toString() === selectedYear;
+
   });
 
   const clearContext = () => {
