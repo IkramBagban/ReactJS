@@ -1,6 +1,4 @@
 import React, { useContext, useState } from "react";
-
-// import "./ExpenseForm.css";
 import ExpenseContext from "../../store/expense-context";
 import { useNavigate } from "react-router-dom";
 import { postData } from "../../utils/api";
