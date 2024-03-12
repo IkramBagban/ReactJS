@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.css";
 import useFetch from "../../CustomerHooks/useFetch";
 import axios from "axios";
-import { API_URL } from "../../utils/constants";
+import { API_URL } from "../../constants";
 
 const Profile = ({ showProfile, onProfileToggle }) => {
   const [editMode, setEditMode] = useState(false);

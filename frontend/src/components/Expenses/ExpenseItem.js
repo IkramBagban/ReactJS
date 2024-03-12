@@ -5,7 +5,7 @@ import Card from "../UI/Card";
 import "./ExpenseItem.css";
 import ExpenseContext from "../../store/expense-context";
 import axios from "axios";
-import { API_URL } from "../../utils/constants";
+import { API_URL } from "../../constants";
 
 const ExpenseItem = (props) => {
   const expenseCtx = useContext(ExpenseContext);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./SendOtp.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "../../utils/constants";
+import { API_URL } from "../../constants";
 
 function Resetpassword() {
   const [password, setPassword] = useState("");
