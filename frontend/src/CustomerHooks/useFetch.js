@@ -19,6 +19,12 @@ const useFetch = (endpoint, headers) => {
         }
 
         console.log(response.data);
+        if (response.status === 401) {
+          localStorage.clear();
+          return alert("Authorization Failed! Refresh the page and login");
+          // throw new Error("Authorization Failed!");
+        }
+
         if (response.status === 200) {
           setDataState({
             data: response.data.data,
@@ -30,6 +36,7 @@ const useFetch = (endpoint, headers) => {
         }
       } catch (err) {
         console.log(err);
+        
         setDataState({
           data: null,
           isLoading: false,

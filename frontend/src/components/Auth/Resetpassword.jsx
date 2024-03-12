@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./SendOtp.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "../../constants";
 
 function Resetpassword() {
   const [password, setPassword] = useState("");
@@ -30,7 +29,7 @@ function Resetpassword() {
         throw new Error("Password Doesn't match");
       }
       const response = await axios.patch(
-        `${API_URL}/api/v1/auth/resetpassword`,
+        `${process.env.REACT_APP_API_URL}/api/v1/auth/resetpassword`,
         {
           email: email,
           password: password,

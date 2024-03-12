@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import ExpenseContext from "../../store/expense-context";
 import { useNavigate } from "react-router-dom";
 import { postData } from "../../utils/api";
-import './ExpenseForm.css'
+import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -52,7 +52,9 @@ const ExpenseForm = () => {
         throw new Error(response.data.errors[0].message);
       }
       if (response.status === 401) {
-        throw new Error("Authorization Failed!");
+        localStorage.clear();
+        return alert("Authorization Failed! Refresh the page and login");
+        // throw new Error("Authorization Failed!");
       }
 
       console.log(response.data);

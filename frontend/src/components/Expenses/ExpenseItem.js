@@ -5,7 +5,6 @@ import Card from "../UI/Card";
 import "./ExpenseItem.css";
 import ExpenseContext from "../../store/expense-context";
 import axios from "axios";
-import { API_URL } from "../../constants";
 
 const ExpenseItem = (props) => {
   const expenseCtx = useContext(ExpenseContext);
@@ -20,7 +19,7 @@ const ExpenseItem = (props) => {
       };
 
       const response = await axios.delete(
-        `${API_URL}/api/v1/expenses/delete/${props.id}`,
+        `${process.env.REACT_APP_API_URL}/api/v1/expenses/delete/${props.id}`,
         { headers }
       );
 
@@ -32,8 +31,13 @@ const ExpenseItem = (props) => {
     } catch (err) {
       console.log(err);
       if (err.response.status === 401) {
-        return alert(err.response.data.message || "Not Authenticated");
+        localStorage.clear();
+        return alert("Authorization Failed! Refresh the page and login");
+        // throw new Error("Authorization Failed!");
       }
+      // if (err.response.status === 401) {
+      //   return alert(err.response.data.message || "Not Authenticated");
+      // }
       alert("Something went wrong");
     }
   };

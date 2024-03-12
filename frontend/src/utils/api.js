@@ -1,5 +1,8 @@
 import axios from "axios";
-import { API_URL } from "../constants";
+// import { API_URL } from "../constants";
+
+const API_URL = process.env.REACT_APP_API_URL
+ 
 
 export const postData = async (endpoint, data, headers) => {
   try {

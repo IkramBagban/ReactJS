@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.css";
 import useFetch from "../../CustomerHooks/useFetch";
 import axios from "axios";
-import { API_URL } from "../../constants";
 
 const Profile = ({ showProfile, onProfileToggle }) => {
   const [editMode, setEditMode] = useState(false);
@@ -38,10 +37,12 @@ const Profile = ({ showProfile, onProfileToggle }) => {
         console.log("Please fill in all fields.");
         return;
       }
-      const response = await axios.patch(`${API_URL}/api/v1/auth/user/${userId}`, {
+      const response = await axios.patch(`${process.env.REACT_APP_API_URL}/api/v1/auth/user/${userId}`, {
         username: profile.username,
         email: profile.email,
       });
+
+      
 
       console.log('response',response)
       if (response.status === 200) {
@@ -54,6 +55,12 @@ const Profile = ({ showProfile, onProfileToggle }) => {
       console.error("Error updating profile:", error);
       if(error.response.status === 409){
         alert('Email already in use. Choose another email')
+      }
+
+      if (error.response.status === 401) {
+        localStorage.clear();
+        return alert("Authorization Failed! Refresh the page and login");
+        // throw new Error("Authorization Failed!");
       }
     }
   };
